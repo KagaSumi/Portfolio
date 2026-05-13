@@ -1,73 +1,138 @@
-# React + TypeScript + Vite
+# Portfolio (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for a personal portfolio website built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+It showcases full-stack development work with a focus on backend systems, infrastructure, and automation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (TypeScript)
+- Vite
+- Tailwind CSS
+- Framer Motion (animations)
+- Vitest + React Testing Library (testing)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Single-page portfolio layout
+- Section-based structure (Hero, About, Projects, Systems, Experience, Education, Contact)
+- Responsive design
+- Animated Hero section using Framer Motion
+- Reusable styling system using Tailwind-based primitives
+- Component-driven architecture
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
+
+src/
+  components/
+    Hero.tsx
+    About.tsx
+    Projects.tsx
+    Systems.tsx
+    Experience.tsx
+    Education.tsx
+    Contact.tsx
+    Navbar.tsx
+    Footer.tsx
+
+  pages/
+    Home.tsx
+
+  styles/
+    layout.ts
+    ui.ts
+    motion.ts
+
+  data/
+    projects.ts
+
+  App.tsx
+  main.tsx
+
+---
+
+## Sections
+
+### Hero
+Intro section with name, role, and navigation links.
+
+### About
+Summary of skills across infrastructure, backend development, and tooling.
+
+### Projects
+List of software projects with descriptions, tech stack, and links.
+
+### Systems & Infrastructure
+Highlights homelab, CI/CD pipelines, and cloud infrastructure work.
+
+### Experience
+Professional experience with impact-focused descriptions.
+
+### Education
+Academic background and degrees.
+
+### Contact
+Links for email, GitHub, and LinkedIn.
+
+---
+
+## Styling Approach
+
+This project uses a lightweight Tailwind-based design system:
+
+- `container` → consistent page width and alignment
+- `section` → consistent vertical spacing between sections
+- `card` → reusable UI blocks
+- Shared typography classes for consistent hierarchy
+
+The goal is consistency and maintainability without over-engineering a full UI framework.
+
+---
+
+## Development
+
+### Install dependencies
+
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm dev
 ```
+
+### Run test
+```bash
+pnpm test
+```
+
+### Build for production
+```bash
+pnpm build
+```
+
+## Testing
+
+Tests are written using Vitest and React Testing Library.
+
+Current coverage:
+
+- Component rendering
+- Basic UI structure validation
+- Section presence checks
+
+## Notes
+This frontend is designed to be extended over time with:
+- Improved animations
+- Project filtering
+- Better accessibility
+- Potential backend integration
+- Optional CMS-driven content
