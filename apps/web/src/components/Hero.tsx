@@ -33,8 +33,8 @@ export default function Hero() {
                     custom={2}
                     className="mt-6 text-xl text-zinc-400 max-w-2xl"
                 >
-                    Building web apps, infrastructure,
-                    and backend systems.
+                Full-stack development with a focus on backend systems,
+                infrastructure, and automation.
                 </motion.p>
 
                 <motion.div
