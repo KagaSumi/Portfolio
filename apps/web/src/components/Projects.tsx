@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const projects = [
     {
         title: "Project Name",
@@ -8,16 +10,22 @@ const projects = [
     },
 
     {
-        title: "Another Project",
+        title: "Relics and Reciepts",
         description:
-            "Describe the technical focus or challenge.",
-        stack: ["TypeScript", "Postgres"],
-        github: "#",
+            "A 2D shop management game built from scratch in C++ using SDL3. Play as a shopkeeper — manage your stockroom, haggle with customers, track your finances, and pay off your debt before time runs out.",
+        stack: ["C++", "SDL3"],
+        github: "https://github.com/KagaSumi/Relics_and_Receipts",
     },
 ];
 
 export default function Projects() {
     return (
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+        >
         <section
             id="projects"
             className="py-32"
@@ -63,5 +71,6 @@ export default function Projects() {
                 </div>
             </div>
         </section>
+        </motion.section>
     );
 }
