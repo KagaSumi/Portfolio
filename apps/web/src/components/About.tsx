@@ -34,10 +34,10 @@ export default function About() {
 
                     <div>
                         <h3 className="text-xl font-semibold mb-4">
-                            Backend & Languages
+                            Programming Languages
                         </h3>
                         <p className="text-zinc-400">
-                            Go (future), Python, C, C++, C#, Java, JavaScript, SQL
+                            Python, C, C++, C#, Java, JavaScript, SQL
                         </p>
                     </div>
 
@@ -55,7 +55,7 @@ export default function About() {
                             Systems & Tools
                         </h3>
                         <p className="text-zinc-400">
-                            PowerBI, Power Platform, automation workflows, monitoring
+                            PowerBI, Power Automate, Sharepoint
                         </p>
                     </div>
 
