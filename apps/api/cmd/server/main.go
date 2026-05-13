@@ -20,7 +20,11 @@ func main() {
 	projectHandler := handler.NewProjectHandler(projectService)
 
 	// Contact
-	contactRepo := &repository.MemoryContactRepo{}
+	dbPool, err := db.New()
+	if err != nil {
+		log.Fatal(err)
+	}
+	contactRepo := repository.NewPostgresContactRepo(dbPool)
 	contactService := service.NewContactService(contactRepo)
 	contactHandler := handler.NewContactHandler(contactService)
 
