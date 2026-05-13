@@ -1,36 +1,27 @@
-import { motion } from "framer-motion";
 import { projects } from "../data/projects";
+import { container } from "../styles/layout";
+import { card } from "../styles/ui";
 
 export default function Projects() {
     return (
-        <motion.section
-            id="projects"
-            className="py-32"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-        >
-            <div className="max-w-5xl mx-auto px-6">
-                <h2 className="text-4xl font-bold mb-12">
+        <section className="py-16">
+            <div className={container}>
+                <h2 className="text-4xl font-bold mb-8">
                     Projects
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-6">
                     {projects.map((project) => (
-                        <div
-                            key={project.title}
-                            className="border border-zinc-800 rounded-2xl p-6 bg-zinc-950"
-                        >
-                            <h3 className="text-2xl font-semibold">
+                        <div key={project.title} className={card}>
+                            <h3 className="text-xl font-semibold">
                                 {project.title}
                             </h3>
 
-                            <p className="mt-4 text-zinc-400 leading-7">
+                            <p className="mt-3 text-zinc-400 leading-7">
                                 {project.description}
                             </p>
 
-                            <div className="flex flex-wrap gap-2 mt-6">
+                            <div className="flex flex-wrap gap-2 mt-4">
                                 {project.stack.map((tech) => (
                                     <span
                                         key={tech}
@@ -43,7 +34,7 @@ export default function Projects() {
 
                             <a
                                 href={project.github}
-                                className="inline-block mt-6 text-sm text-white hover:underline"
+                                className="inline-block mt-4 text-sm text-white hover:underline"
                             >
                                 View Project →
                             </a>
@@ -51,6 +42,6 @@ export default function Projects() {
                     ))}
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

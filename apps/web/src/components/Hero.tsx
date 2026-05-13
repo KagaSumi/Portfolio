@@ -1,51 +1,47 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "../styles/motion";
 
 export default function Hero() {
     return (
-        <motion.section
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.4 }}
->
         <section id="hero" className="min-h-screen flex items-center">
             <div className="max-w-5xl mx-auto px-6">
 
-                {/* Role */}
                 <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="show"
+                    custom={0}
                     className="text-zinc-400 mb-4"
                 >
                     Full-stack Developer
                 </motion.p>
 
-                {/* Name */}
                 <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="show"
+                    custom={1}
                     className="text-6xl md:text-7xl font-bold leading-tight"
                 >
                     Quinten Leung
                 </motion.h1>
 
-                {/* Description */}
                 <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.35 }}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="show"
+                    custom={2}
                     className="mt-6 text-xl text-zinc-400 max-w-2xl"
                 >
                     Building web apps, infrastructure,
                     and backend systems.
                 </motion.p>
 
-                {/* Buttons */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.5 }}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="show"
+                    custom={3}
                     className="mt-8 flex gap-4"
                 >
                     <a
@@ -65,6 +61,5 @@ export default function Hero() {
 
             </div>
         </section>
-        </motion.section>
     );
 }

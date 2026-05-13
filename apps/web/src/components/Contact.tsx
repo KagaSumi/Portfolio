@@ -1,40 +1,39 @@
+import { container, section } from "../styles/layout";
+import { button } from "../styles/ui";
+
 export default function Contact() {
     return (
-        <section id="contact" className="py-32 border-t border-zinc-800">
-            <div className="max-w-5xl mx-auto px-6">
+        <section className={section}>
+            <div className={container + " text-center"}>
+
                 <h2 className="text-4xl font-bold mb-6">
                     Contact
                 </h2>
 
-                <p className="text-zinc-400 max-w-2xl leading-7">
-                    If you want to talk about backend systems, infrastructure,
-                    or collaboration, feel free to reach out.
+                <p className="text-zinc-400 mb-10">
+                    Open to backend, infrastructure, and co-op opportunities.
                 </p>
 
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                    <a
-                        href="mailto:quinten.leung@gmail.com"
-                        className="px-6 py-3 bg-white text-black rounded-lg font-medium text-center"
-                    >
-                        Email Me
+                <div className="flex flex-wrap justify-center gap-6">
+                    <a href="mailto:quinten.leung@gmail.com" className={button}>
+                        Email
                     </a>
 
                     <a
-                        href="https://github.com/KagaSumi"
-                        target="_blank"
-                        className="px-6 py-3 border border-zinc-700 rounded-lg text-center hover:bg-zinc-900"
+                        href="https://github.com/kagasumi"
+                        className={button}
                     >
                         GitHub
                     </a>
 
                     <a
                         href="https://linkedin.com/in/quintenl"
-                        target="_blank"
-                        className="px-6 py-3 border border-zinc-700 rounded-lg text-center hover:bg-zinc-900"
+                        className={button}
                     >
                         LinkedIn
                     </a>
                 </div>
+
             </div>
         </section>
     );
