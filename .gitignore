@@ -1,0 +1,46 @@
+# dependencies
+node_modules
+
+# production build
+dist
+build
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# logs
+logs
+*.log
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript cache
+*.tsbuildinfo
+
+# vite
+vite.config.ts.timestamp-*
+
+# testing
+coverage
+
+# pnpm
+.pnpm-store
+
+# optional: turbo / nx / cache tools
+.turbo
+.cache
