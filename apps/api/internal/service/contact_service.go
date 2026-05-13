@@ -13,6 +13,6 @@ func NewContactService(r repository.ContactRepository) *ContactService {
     return &ContactService{repo: r}
 }
 
-func (s *ContactService) Submit(msg model.ContactMessage) {
-    s.repo.Save(msg)
+func (s *ContactService) Submit(msg model.ContactMessage) error {
+    return s.repo.Save(msg)
 }

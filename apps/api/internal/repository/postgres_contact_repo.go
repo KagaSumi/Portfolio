@@ -18,7 +18,7 @@ func NewPostgresContactRepo(db *pgxpool.Pool) *PostgresContactRepo {
 func (r *PostgresContactRepo) Save(msg model.ContactMessage) error {
     _, err := r.db.Exec(
         context.Background(),
-        `INSERT INTO contacts (name, email, message) VALUES ($1, $2, $3)`,
+        `INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)`,
         msg.Name,
         msg.Email,
         msg.Message,
@@ -28,7 +28,7 @@ func (r *PostgresContactRepo) Save(msg model.ContactMessage) error {
 
 func (r *PostgresContactRepo) GetAll() ([]model.ContactMessage, error) {
     rows, err := r.db.Query(context.Background(),
-        `SELECT name, email, message FROM contacts`,
+        `SELECT name, email, message FROM contact_messages`,
     )
     if err != nil {
         return nil, err

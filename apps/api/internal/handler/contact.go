@@ -19,12 +19,18 @@ func NewContactHandler(s *service.ContactService) *ContactHandler {
 func (h *ContactHandler) SubmitContact(w http.ResponseWriter, r *http.Request) {
 	var msg model.ContactMessage
 
+	// 1. Decode JSON body
 	if err := json.NewDecoder(r.Body).Decode(&msg); err != nil {
-		http.Error(w, "invalid request", http.StatusBadRequest)
+		http.Error(w, "invalid JSON", http.StatusBadRequest)
 		return
 	}
 
-	h.service.Submit(msg)
+	// 2. Call service once
+	if err := h.service.Submit(msg); err != nil {
+		//http.Error(w, "failed to save message", http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	w.WriteHeader(http.StatusCreated)
 }
