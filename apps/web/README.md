@@ -28,7 +28,7 @@ It showcases full-stack development work with a focus on backend systems, infras
 ---
 
 ## Project Structure
-
+```text
 src/
   components/
     Hero.tsx
@@ -40,6 +40,10 @@ src/
     Contact.tsx
     Navbar.tsx
     Footer.tsx
+
+  api/
+    contact.ts
+    project.ts
 
   pages/
     Home.tsx
@@ -54,7 +58,7 @@ src/
 
   App.tsx
   main.tsx
-
+```
 ---
 
 ## Sections
