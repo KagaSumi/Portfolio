@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+
+# Environment
+.env
+
+# Build artifacts
+bin
+dist
+build
+tmp
+
+# Logs
+*.log
+
+# Coverage
+coverage.out
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Documentation
+README.md

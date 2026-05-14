@@ -13,7 +13,7 @@ export default function Hero() {
                     custom={0}
                     className="text-zinc-400 mb-4"
                 >
-                    Full-stack Developer
+                    Backend & Infrastructure Developer
                 </motion.p>
 
                 <motion.h1
@@ -33,8 +33,7 @@ export default function Hero() {
                     custom={2}
                     className="mt-6 text-xl text-zinc-400 max-w-2xl"
                 >
-                Full-stack development with a focus on backend systems,
-                infrastructure, and automation.
+                Building reliable systems — from cloud infrastructure to production pipelines.
                 </motion.p>
 
                 <motion.div

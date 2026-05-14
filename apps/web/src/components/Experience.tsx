@@ -17,10 +17,9 @@ export default function Experience() {
                             Teck Resources — Co-op Developer
                         </h3>
 
+                        <p className="text-zinc-500 text-sm mt-1">Dec 2023 - Aug 2024</p>
                         <p className={text + " mt-3"}>
-                            Automated enterprise migration workflow (10 weeks → 1 week),
-                            maintained 18 production applications, introduced pytest testing,
-                            and improved operational dashboards with Power BI.
+                        Automated enterprise migration workflow (10 weeks → 1 week), maintained 18 production applications, introduced pytest testing, and improved operational dashboards with Power BI.
                         </p>
                     </div>
 
@@ -29,6 +28,7 @@ export default function Experience() {
                             ProVita Care Management
                         </h3>
 
+                        <p className="text-zinc-500 text-sm mt-1">Jan 2020 - Dec 2023</p>
                         <p className={text + " mt-3"}>
                             Managed high-volume scheduling and communication between staff,
                             residents, and families in a long-term care environment.

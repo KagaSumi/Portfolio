@@ -10,7 +10,7 @@ describe("Hero", () => {
     it("renders role text", () => {
         render(<Hero />);
         expect(
-            screen.getByText(/Full-stack Developer/i)
+            screen.getByText(/Backend & Infrastructure Developer/i)
         ).toBeInTheDocument();
     });
 });

@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16
+    container_name: portfolio_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: portfolio
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./apps/api/internal/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata:

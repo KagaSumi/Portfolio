@@ -1,13 +1,8 @@
 node_modules
 dist
-.vite
-coverage
-
 .git
-.gitignore
-
+.vscode
+coverage
 Dockerfile
 README.md
-
 .env
-.env.*
