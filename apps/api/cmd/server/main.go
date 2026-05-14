@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/cors"
 	"github.com/jackc/pgx/v5/pgxpool"
 
 	"github.com/KagaSumi/Portfolio/apps/api/internal/handler"
@@ -15,6 +16,35 @@ import (
 
 func main() {
 	r := chi.NewRouter()
+	// --------------------
+	// CORS Setup
+	// --------------------
+	r.Use(cors.Handler(cors.Options{
+    AllowedOrigins: []string{
+        "http://localhost:5173",
+    },
+
+    AllowedMethods: []string{
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS",
+    },
+
+    AllowedHeaders: []string{
+        "Accept",
+        "Authorization",
+        "Content-Type",
+    },
+
+    ExposedHeaders: []string{
+        "Link",
+    },
+
+    AllowCredentials: false,
+    MaxAge: 300,
+	}))
 
 	// --------------------
 	// Projects (memory only)
