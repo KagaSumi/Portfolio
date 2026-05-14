@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { sendContact, type ContactForm } from "../api/contact";
 
 export default function Contact() {
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<ContactForm>({
         name: "",
         email: "",
         message: "",
@@ -17,17 +18,7 @@ export default function Contact() {
         setStatus("");
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(form),
-            });
-
-            if (!response.ok) {
-                throw new Error("Failed to send message");
-            }
+            await sendContact(form);
 
             setStatus("Message sent successfully.");
 
@@ -36,10 +27,9 @@ export default function Contact() {
                 email: "",
                 message: "",
             });
-
         } catch (error) {
-            setStatus("Failed to send message.");
             console.error(error);
+            setStatus("Failed to send message.");
         } finally {
             setLoading(false);
         }
@@ -55,23 +45,15 @@ export default function Contact() {
     }
 
     return (
-        <section
-            id="contact"
-            className="py-24"
-        >
+        <section id="contact" className="py-24">
             <div className="max-w-3xl mx-auto px-6">
-                <h2 className="text-4xl font-bold mb-6">
-                    Contact
-                </h2>
+                <h2 className="text-4xl font-bold mb-6">Contact</h2>
 
                 <p className="text-zinc-400 mb-10">
                     Open to backend, infrastructure, and co-op opportunities.
                 </p>
 
-                <form
-                    onSubmit={handleSubmit}
-                    className="space-y-6"
-                >
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <input
                         type="text"
                         name="name"
@@ -79,15 +61,7 @@ export default function Contact() {
                         value={form.name}
                         onChange={handleChange}
                         required
-                        className="
-                            w-full
-                            p-4
-                            rounded-xl
-                            border border-zinc-800
-                            bg-zinc-900/30
-                            outline-none
-                            focus:border-zinc-600
-                        "
+                        className="w-full p-4 rounded-xl border border-zinc-800 bg-zinc-900/30 outline-none focus:border-zinc-600"
                     />
 
                     <input
@@ -97,15 +71,7 @@ export default function Contact() {
                         value={form.email}
                         onChange={handleChange}
                         required
-                        className="
-                            w-full
-                            p-4
-                            rounded-xl
-                            border border-zinc-800
-                            bg-zinc-900/30
-                            outline-none
-                            focus:border-zinc-600
-                        "
+                        className="w-full p-4 rounded-xl border border-zinc-800 bg-zinc-900/30 outline-none focus:border-zinc-600"
                     />
 
                     <textarea
@@ -115,37 +81,19 @@ export default function Contact() {
                         value={form.message}
                         onChange={handleChange}
                         required
-                        className="
-                            w-full
-                            p-4
-                            rounded-xl
-                            border border-zinc-800
-                            bg-zinc-900/30
-                            outline-none
-                            focus:border-zinc-600
-                        "
+                        className="w-full p-4 rounded-xl border border-zinc-800 bg-zinc-900/30 outline-none focus:border-zinc-600"
                     />
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className="
-                            px-6 py-3
-                            rounded-xl
-                            bg-white text-black
-                            font-medium
-                            hover:opacity-90
-                            transition
-                            disabled:opacity-50
-                        "
+                        className="px-6 py-3 rounded-xl bg-white text-black font-medium hover:opacity-90 transition disabled:opacity-50"
                     >
                         {loading ? "Sending..." : "Send Message"}
                     </button>
 
                     {status && (
-                        <p className="text-sm text-zinc-400">
-                            {status}
-                        </p>
+                        <p className="text-sm text-zinc-400">{status}</p>
                     )}
                 </form>
             </div>

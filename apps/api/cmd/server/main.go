@@ -16,61 +16,40 @@ import (
 
 func main() {
 	r := chi.NewRouter()
-	// --------------------
-	// CORS Setup
-	// --------------------
+
 	r.Use(cors.Handler(cors.Options{
-    AllowedOrigins: []string{
-        "http://localhost:5173",
-    },
-
-    AllowedMethods: []string{
-        "GET",
-        "POST",
-        "PUT",
-        "DELETE",
-        "OPTIONS",
-    },
-
-    AllowedHeaders: []string{
-        "Accept",
-        "Authorization",
-        "Content-Type",
-    },
-
-    ExposedHeaders: []string{
-        "Link",
-    },
-
-    AllowCredentials: false,
-    MaxAge: 300,
+		AllowedOrigins: []string{"http://localhost:5173"},
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders: []string{"Accept", "Authorization", "Content-Type"},
+		ExposedHeaders: []string{"Link"},
+		AllowCredentials: false,
+		MaxAge: 300,
 	}))
 
 	// --------------------
-	// Projects (memory only)
+	// DB (required)
 	// --------------------
-	projectRepo := repository.MemoryProjectRepo{}
+	ctx := context.Background()
+
+	dbPool, err := pgxpool.New(ctx,
+		"postgres://postgres:postgres@localhost:5432/portfolio?sslmode=disable",
+	)
+	if err != nil {
+		log.Fatal("Postgres connection failed:", err)
+	}
+	defer dbPool.Close()
+
+	// --------------------
+	// Projects
+	// --------------------
+	projectRepo := repository.NewPostgresProjectRepo(dbPool)
 	projectService := service.NewProjectService(projectRepo)
 	projectHandler := handler.NewProjectHandler(projectService)
 
 	// --------------------
-	// Contact (fallback)
+	// Contact
 	// --------------------
-	var contactRepo repository.ContactRepository
-
-	dbPool, err := pgxpool.New(
-		context.Background(),
-		"postgres://postgres:postgres@localhost:5432/portfolio?sslmode=disable",
-	)
-
-	if err != nil {
-		log.Println("Postgres failed, using memory contact repo")
-		contactRepo = &repository.MemoryContactRepo{}
-	} else {
-		log.Println("Postgres connected, using DB contact repo")
-		contactRepo = repository.NewPostgresContactRepo(dbPool)
-	}
-
+	contactRepo := repository.NewPostgresContactRepo(dbPool)
 	contactService := service.NewContactService(contactRepo)
 	contactHandler := handler.NewContactHandler(contactService)
 

@@ -13,3 +13,24 @@ CREATE TABLE IF NOT EXISTS projects (
     stack TEXT[],
     github TEXT
 );
+
+--Seed Data
+INSERT INTO projects (
+    title,
+    description,
+    stack,
+    github
+)
+VALUES
+(
+    'Relics and Receipts',
+    '2D shop management game built with SDL3',
+    ARRAY['C++', 'SDL3'],
+    'https://github.com/KagaSumi/Relics_and_Receipts'
+),
+(
+    'Portfolio Platform',
+    'Full-stack portfolio using React, Go, PostgreSQL, and Docker',
+    ARRAY['React', 'Go', 'PostgreSQL', 'Docker'],
+    'https://github.com/KagaSumi/Portfolio'
+);

@@ -1,18 +1,55 @@
-import { projects } from "../data/projects";
+import { useEffect, useState } from "react";
 import { container } from "../styles/layout";
 import { card } from "../styles/ui";
+import { getProjects, type Project } from "../api/project";
 
 export default function Projects() {
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        getProjects()
+            .then((data) => {
+                setProjects(data);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError("Failed to load projects");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-16">
+                <div className={container}>
+                    <p className="text-zinc-400">Loading projects...</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="py-16">
+                <div className={container}>
+                    <p className="text-red-400">{error}</p>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="py-16">
             <div className={container}>
-                <h2 className="text-4xl font-bold mb-8">
-                    Projects
-                </h2>
+                <h2 className="text-4xl font-bold mb-8">Projects</h2>
 
                 <div className="grid md:grid-cols-2 gap-6">
                     {projects.map((project) => (
-                        <div key={project.title} className={card}>
+                        <div key={project.id} className={card}>
                             <h3 className="text-xl font-semibold">
                                 {project.title}
                             </h3>
