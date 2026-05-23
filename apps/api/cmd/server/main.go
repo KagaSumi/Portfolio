@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"context"
 	"log"
 	"net/http"
@@ -27,13 +28,19 @@ func main() {
 	}))
 
 	// --------------------
+	// ENV (required)
+	// --------------------
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		log.Fatal("DATABASE_URL not set")
+	}
+
+	// --------------------
 	// DB (required)
 	// --------------------
 	ctx := context.Background()
 
-	dbPool, err := pgxpool.New(ctx,
-		"postgres://postgres:postgres@localhost:5432/portfolio?sslmode=disable",
-	)
+	dbPool, err := pgxpool.New(ctx,dsn)
 	if err != nil {
 		log.Fatal("Postgres connection failed:", err)
 	}
