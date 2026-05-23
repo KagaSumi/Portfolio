@@ -16,10 +16,28 @@ import (
 )
 
 func main() {
+	// --------------------
+	// ENV (required)
+	// --------------------
+	dsn := os.Getenv("DATABASE_URL")
+	domain := os.Getenv("DOMAIN_URL")
+	if dsn == "" {
+		log.Fatal("DATABASE_URL not set")
+	}
+	if domain == "" {
+		log.Fatal("Domain not set")
+	}
+	
+	// --------------------
+	// CORS (required)
+	// --------------------
 	r := chi.NewRouter()
 
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins: []string{"http://localhost:5173"},
+		AllowedOrigins: []string{
+			"http://localhost:5173",
+			domain
+		},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"Accept", "Authorization", "Content-Type"},
 		ExposedHeaders: []string{"Link"},
