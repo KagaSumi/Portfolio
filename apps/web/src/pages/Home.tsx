@@ -42,7 +42,7 @@ export default function Home() {
                     </Reveal>
                 </section>
 
-                <section id="Education">
+                <section id="education">
                     <Reveal>
                         <Education />
                     </Reveal>

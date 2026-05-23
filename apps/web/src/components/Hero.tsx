@@ -3,7 +3,7 @@ import { fadeUp } from "../styles/motion";
 
 export default function Hero() {
     return (
-        <section id="hero" className="min-h-screen flex items-center">
+        <section className="min-h-screen flex items-center">
             <div className="max-w-5xl mx-auto px-6">
 
                 <motion.p
