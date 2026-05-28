@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/joho/godotenv"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -19,13 +21,18 @@ func main() {
 	// --------------------
 	// ENV (required)
 	// --------------------
+	err := godotenv.Load()
+	if err != nil {
+		log.Println(".env file not found")
+	}
+
 	dsn := os.Getenv("DATABASE_URL")
 	domain := os.Getenv("DOMAIN_URL")
 	if dsn == "" {
 		log.Fatal("DATABASE_URL not set")
 	}
 	if domain == "" {
-		log.Fatal("Domain not set")
+		log.Println("Domain not set")
 	}
 	
 	// --------------------
@@ -36,7 +43,7 @@ func main() {
 	r.Use(cors.Handler(cors.Options{
 		AllowedOrigins: []string{
 			"http://localhost:5173",
-			domain
+			domain,
 		},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"Accept", "Authorization", "Content-Type"},
@@ -44,14 +51,6 @@ func main() {
 		AllowCredentials: false,
 		MaxAge: 300,
 	}))
-
-	// --------------------
-	// ENV (required)
-	// --------------------
-	dsn := os.Getenv("DATABASE_URL")
-	if dsn == "" {
-		log.Fatal("DATABASE_URL not set")
-	}
 
 	// --------------------
 	// DB (required)
